@@ -101,8 +101,9 @@ class ScriptRunner:
     def run_script(self, file=None):
         # TODO
         # ?Start glue job
-
-
+        response = client.start_job_run(
+            JobName='string'
+        )
 
 if __name__== "__main__":
     #print(__import__("Video"))
