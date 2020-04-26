@@ -6,6 +6,7 @@ from cloudmesh.common.util import path_expand
 import glob
 from cloudmesh.common.Shell import Shell
 import boto3
+import logging
 
 class ScriptRunner:
 
@@ -27,8 +28,6 @@ class ScriptRunner:
         try:
             pass
             #TODO:
-            import boto3
-            import logging
             s3 = boto3.resource('s3')
             file_name = "/Users/psenthil/Desktop/MS/2020/CloudComputing-E-516/glue/dog.txt"
         
@@ -52,8 +51,6 @@ class ScriptRunner:
             print("Error uploading file: " + str(e))
 
     def list(self, name=None):
-        import boto3
-        import logging
         s3 = boto3.resource('s3')
         """List a file to an S3 bucket
 
@@ -71,22 +68,29 @@ class ScriptRunner:
             print("Error uploading file: " + str(e))
         raise NotImplementedError
 
+    def removeFile(self,file="my_File"):
+        try:
+            s3 = boto3.resource("s3")
+            obj = s3.Object("aniketbucketpython", file)
+            obj.delete()
+        except:
+            print("Unabled to Delete a file: " + str(e))
+        raise NotImplementedError
+      
     def create_glue_job(self):
         # TODO
         # Create glue job
+        response = client.create_job(
+            Name='CMSJOB',
+            Role='GlueDataLakeServiceLinkRole',
+            Command={
+                'Name': 'CommandNAME',
+                'ScriptLocation': 's3://demo0001/dog/glue/cms.py',
+                'PythonVersion': '3'
+            }
+        )
 
-    def removeFile(self,file=None):
 
-        if file is None:
-            #remove all video file
-            files = os.listdir(self.dest)
-            for file in files:
-                extn = file.split('.')[-1]
-                if extn in self.valid_extn:
-                    os.remove(os.path.join(self.dest, file))
-        else:
-            os.remove(os.path.join(self.dest,file))
-    
     def run_script(self, file=None):
         # TODO
         # ?Start glue job
