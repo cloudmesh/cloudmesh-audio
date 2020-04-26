@@ -90,6 +90,13 @@ class ScriptRunner:
             }
         )
 
+    def delete_glue_job(self):
+        # TODO
+        # Create glue job
+        response = client.delete_job(
+            JobName='string'
+        )
+
 
     def run_script(self, file=None):
         # TODO
