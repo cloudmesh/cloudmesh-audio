@@ -109,5 +109,5 @@ This graph is saved under root folder as 'ab.png'.
 #### Architecure of this workflow in AWS
 
 
-![Architecture Diagram](image/abc.png) 
+![Architecture Diagram](image/cms-scriptrunner.png) 
 
