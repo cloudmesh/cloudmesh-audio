@@ -3,6 +3,12 @@
 With this project, additional features has been implemented in Cloudmeash (cms) framework to enable users to upload and run any python scripts seamlessly in cms command line and thus
 behind the scene launches AWS services like AWS Glue and S3 to upload any python scripts and run the job seamlessly and store any output to the S3 target in a serverless mehtod. 
 
+
+#### Architecure of this workflow in AWS
+
+![Architecture Diagram](images/cms-scriptrunner.png) 
+
+
 ## Prerequisite
 
 python 3.6.9
@@ -53,12 +59,12 @@ Create a cm folder
 
 ```
 
-mkdir cm
-cd cm
+mkdir cm-scriptrunner
+cd cm-scriptrunner
 
 ```
 
-Run these commands to install cloudmesh-seechi
+Run these commands to install cloudmesh-scriptrunner
 
 ```
 pip install cloudmesh-cmd5
@@ -103,11 +109,4 @@ cms scriptrunner --list=TRUE --file=./pythonjob.py --bucket=<s3bucketname>
 ```
 
 
-This graph is saved under root folder as 'ab.png'.
-
-
-#### Architecure of this workflow in AWS
-
-
-![Architecture Diagram](images/cms-scriptrunner.png) 
 
