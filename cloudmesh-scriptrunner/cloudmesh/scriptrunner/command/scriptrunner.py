@@ -8,7 +8,7 @@ from pprint import pprint
 from cloudmesh.scriptrunner import GlueRunner
 from cloudmesh.common.debug import VERBOSE
 from cloudmesh.shell.command import map_parameters
-# test
+
 
 class ScriptrunnerCommand(PluginCommand):
 
@@ -20,7 +20,7 @@ class ScriptrunnerCommand(PluginCommand):
 
           Usage:
                 scriptrunner --file=FILE --bucket=BUCKET --upload=UPLOAD
-                scriptrunner --bucket=BUCKET list
+                scriptrunner --bucket=BUCKET --list=LIST
 
           This command does some useful things.
 
@@ -28,6 +28,7 @@ class ScriptrunnerCommand(PluginCommand):
               FILE   a file name
               BUCKET a bucket name
               UPLOAD TRUE
+              LIST  TRUE
 
           Options:
               -f      specify the file
@@ -36,10 +37,7 @@ class ScriptrunnerCommand(PluginCommand):
         """
 
         map_parameters(arguments,
-                       'upload')
-
-        map_parameters(arguments,
-                       'list')
+                       'upload', 'list')
 
         arguments.FILE = arguments['--file'] or None
         arguments.BUCKET = arguments['--bucket'] or None

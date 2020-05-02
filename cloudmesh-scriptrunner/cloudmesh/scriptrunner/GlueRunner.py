@@ -5,16 +5,15 @@ from cloudmesh.common.util import path_expand
 from cloudmesh.common.Shell import Shell
 import boto3
 # import logging
-#Test entry
+s3 = boto3.client('s3')
 
 
 class GlueRunner:
     valid_extn = ["py"]
 
     def __init__(self, file=None, bucket=None):
-        # if none put it
-        # in cwd/dest
-        self.file = path_expand(file)
+        if file is not None:
+            self.file = path_expand(file)
         self.bucket = bucket
         # dir_path = os.path.dirname(path)
         self.glue = boto3.client("glue")
@@ -37,15 +36,14 @@ class GlueRunner:
             if self.file is not None:
                 file_name = self.file.split('/')[-1]
 
-            s3.meta.client.upload_file(Filename=self.file, Bucket=self.bucket, Key=file_name)
+            s3.meta.client.upload_file(Filename=self.file, Bucket=self.bucket, Key="scripts/"+file_name)
             print("Uploaded file successfully")
             return True
 
         except Exception as e:
             print("Error uploading file: " + str(e))
 
-    def list(self, name=None):
-        s3 = boto3.resource('s3')
+    def list(self, kind="list"):
         """List a file to an S3 bucket
 
         :param bucket: Bucket to upload to
@@ -53,13 +51,18 @@ class GlueRunner:
         :return: True if file was uploaded, else False
         """
         try:
-            my_bucket = s3.Bucket(self.bucket)
-            for file in my_bucket.objects.all():
-                print(file.key)
+            response = s3.list_objects_v2(
+                Bucket=self.bucket,
+                Delimiter='/',
+                Prefix='scripts/'
+            )
+            print (response)
+            if "Contents" in response:
+                for key in response["Contents"]:
+                    print (key["Key"])
             # list all files in input folder
         except Exception as e:
             print("Error uploading file: " + str(e))
-        raise NotImplementedError
 
     def removeFile(self, file="my_File"):
         try:
