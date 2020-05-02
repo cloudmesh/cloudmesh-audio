@@ -120,5 +120,9 @@ cms scriptrunner --delete=TRUE --file=./setup.py --bucket=<s3-bucket-name>```
 cms scriptrunner --list=TRUE --file=./pythonjob.py --bucket=<s3bucketname>
 ```
 
+#### Create AWS Glue Job
 
+```
+cms scriptrunner --job_name=<name-of-glue-job> --role_name=<name of IAM Role> --cmd_name=<command_name> --bucket=<name-of-s3-bucket> --file=<'python script'> --create_job=TRUE
+```
 

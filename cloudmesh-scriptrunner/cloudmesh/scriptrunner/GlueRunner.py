@@ -84,7 +84,7 @@ class GlueRunner:
         except Exception as e:
             print("Unable to Delete a file: " + str(e))
 
-    def createjob(self, kind="createjob"):
+    def create_job(self, kind="create_job"):
         """Create AWS Glue Job based on python script located at S3 bucket
 
         :param job_name: Name of Glue Job

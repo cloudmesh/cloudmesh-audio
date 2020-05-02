@@ -22,7 +22,7 @@ class ScriptrunnerCommand(PluginCommand):
                 scriptrunner --file=FILE --bucket=BUCKET --upload=UPLOAD
                 scriptrunner --file=FILE --bucket=BUCKET --delete=DELETE
                 scriptrunner --bucket=BUCKET --list=LIST
-                scriptrunner --jobname=JOBNAME --rolename=ROLENAME --cmdname=CMDNAME --bucket=BUCKET --file=FILE --createjob=CREATEJOB
+                scriptrunner --job_name=JOB_NAME --role_name=ROLE_NAME --cmd_name=CMD_NAME --bucket=BUCKET --file=FILE --create_job=CREATE_JOB
 
           This command does some useful things.
 
@@ -32,10 +32,10 @@ class ScriptrunnerCommand(PluginCommand):
               UPLOAD TRUE
               LIST  TRUE
               DELETE TRUE
-              CREATEJOB TRUE
-              JOBNAME a glue job name
-              ROLENAME a IAM Role used to create AWS GLUE job
-              CMDNAME a name of glue job's command
+              CREATE_JOB TRUE
+              JOB_NAME a glue job name
+              ROLE_NAME a IAM Role used to create AWS GLUE job
+              CMD_NAME a name of glue job's command
 
           Options:
               -f      specify the file
@@ -44,18 +44,17 @@ class ScriptrunnerCommand(PluginCommand):
         """
 
         map_parameters(arguments,
-                       'upload', 'list', 'delete', 'createjob')
+                       'upload', 'list', 'delete', 'create_job')
 
         arguments.FILE = arguments['--file'] or None
         arguments.BUCKET = arguments['--bucket'] or None
         arguments.UPLOAD = arguments['--upload'] or None
         arguments.DELETE = arguments['--delete'] or None
         arguments.LIST = arguments['--list'] or None
-        arguments.CREATEJOB = arguments['--createjob'] or None
-        arguments.JOBNAME = arguments['--jobname'] or None
-        arguments.ROLENAME = arguments['--rolename'] or None
-        arguments.CMDNAME = arguments['--cmdname'] or None
-        print (args)
+        arguments.CREATE_JOB = arguments['--create_job'] or None
+        arguments.JOB_NAME = arguments['--job_name'] or None
+        arguments.ROLE_NAME = arguments['--role_name'] or None
+        arguments.CMD_NAME = arguments['--cmd_name'] or None
 
         VERBOSE(arguments)
 
@@ -76,9 +75,9 @@ class ScriptrunnerCommand(PluginCommand):
             gr = GlueRunner.GlueRunner(arguments.FILE, arguments.BUCKET)
             gr.list()
 
-        if arguments.CREATEJOB is not None:
+        if arguments.CREATE_JOB is not None:
             print("create Glue JOB")
-            gr = GlueRunner.GlueRunner(arguments.BUCKET, arguments.FILE, arguments.JOBNAME, arguments.ROLENAME, arguments.CMDNAME)
-            gr.createjob()
+            gr = GlueRunner.GlueRunner(arguments.BUCKET, arguments.FILE, arguments.JOB_NAME, arguments.ROLE_NAME, arguments.CMD_NAME)
+            gr.create_job()
 
         return ""
