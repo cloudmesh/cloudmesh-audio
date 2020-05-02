@@ -117,11 +117,10 @@ scriptrunner --file=<./python-file.py> --bucket=<s3-bucket-name> --delete=TRUE
 
 ```
 
-#### Run list through cms command
+#### Run list of scripts existing S3 bucket under "scripts" folder through cms command
 
 ```
-cms scriptrunner --list=TRUE --file=./pythonjob.py --bucket=<s3bucketname>
-```
+scriptrunner --bucket=<s3-bucket-name> --list=TRUE```
 
 #### Create AWS Glue Job
 
