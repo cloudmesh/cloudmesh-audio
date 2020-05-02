@@ -103,13 +103,7 @@ cms scriptrunner --list=TRUE --file=./pythonjob.py --bucket=<s3bucketname>
 ```
 
 
-#### Get the graph output
-
-```
-cms secchi show graph
-```
-
-This graph is saved under root folder as 'secchi.png'.
+This graph is saved under root folder as 'ab.png'.
 
 
 #### Architecure of this workflow in AWS
