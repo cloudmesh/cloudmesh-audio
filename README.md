@@ -1,7 +1,7 @@
 # Objective
 
-With this project, additional features has been implemented in Cloudmeash (cms) framework to enable users to upload and run any python scripts seamlessly in cms command line and thus
-behind the scene launches AWS services like AWS Glue and S3 to upload any python scripts and run the job seamlessly and store any output to the S3 target in a serverless mehtod. 
+With this project, additional features has been implemented in Cloudmeash (cms) framework to enable users to upload and run any python scripts seamlessly and serverless way using cms command line and thus
+behind the scene launches the required AWS services like AWS Glue, AWS S3 and AWS lambda script to upload any python scripts and execute user provided adoc method or automated way for any data source update and stores the output to the target S3 folder. 
 
 
 #### Architecure of this workflow in AWS
