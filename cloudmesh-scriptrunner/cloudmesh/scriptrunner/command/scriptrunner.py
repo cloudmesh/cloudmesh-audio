@@ -20,6 +20,7 @@ class ScriptrunnerCommand(PluginCommand):
 
           Usage:
                 scriptrunner --file=FILE --bucket=BUCKET --upload=UPLOAD
+                scriptrunner --file=FILE --bucket=BUCKET --delete=DELETE
                 scriptrunner --bucket=BUCKET --list=LIST
 
           This command does some useful things.
@@ -29,6 +30,7 @@ class ScriptrunnerCommand(PluginCommand):
               BUCKET a bucket name
               UPLOAD TRUE
               LIST  TRUE
+              DELETE TRUE
 
           Options:
               -f      specify the file
@@ -37,11 +39,12 @@ class ScriptrunnerCommand(PluginCommand):
         """
 
         map_parameters(arguments,
-                       'upload', 'list')
+                       'upload', 'list', 'delete')
 
         arguments.FILE = arguments['--file'] or None
         arguments.BUCKET = arguments['--bucket'] or None
         arguments.UPLOAD = arguments['--upload'] or None
+        arguments.DELETE = arguments['--delete'] or None
         arguments.LIST = arguments['--list'] or None
 
 
@@ -54,11 +57,16 @@ class ScriptrunnerCommand(PluginCommand):
             gr = GlueRunner.GlueRunner(arguments.FILE, arguments.BUCKET)
             gr.upload()
 
+        if arguments.DELETE:
+            print("option delete")
+            gr = GlueRunner.GlueRunner(arguments.FILE, arguments.BUCKET)
+            gr.delete()
+
         # if arguments.FILE:
         #     print("option a")
         #     m.list(path_expand(arguments.FILE))
 
-        elif arguments.LIST:
+        if arguments.LIST:
             print("option list")
             gr = GlueRunner.GlueRunner(arguments.FILE, arguments.BUCKET)
             gr.list()

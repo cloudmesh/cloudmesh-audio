@@ -64,14 +64,25 @@ class GlueRunner:
         except Exception as e:
             print("Error uploading file: " + str(e))
 
-    def removeFile(self, file="my_File"):
+    def delete(self, kind="delete"):
+        """List a file to an S3 bucket
+
+        :param bucket: Bucket to upload to
+        :param object_name: S3 object name. If not specified then file_name is used
+        :return: True if file was uploaded, else False
+        """
         try:
-            s3 = boto3.resource("s3")
-            obj = s3.Object("aniketbucketpython", file)
-            obj.delete()
+            if self.file is not None:
+                file_name = self.file.split('/')[-1]
+
+            response = s3.delete_object(
+                Bucket=self.bucket,
+                Key="scripts/"+file_name
+            )
+            print (response)
+
         except Exception as e:
-            print("Unabled to Delete a file: " + str(e))
-        raise NotImplementedError
+            print("Unable to Delete a file: " + str(e))
 
     def create_glue_job(self):
         # TODO

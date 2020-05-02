@@ -107,14 +107,12 @@ This is the file on which prediction would run.
 For upload, run command
 
 ```
-cms scriptrunner --upload=TRUE --file=./pythonjob.py --bucket=<s3bucketname>
-```
+cms scriptrunner --upload=TRUE --file=./setup.py --bucket=<s3-bucket-name>```
 
 For delete, run command 
 
 ```
-cms scriptrunner --delete=TRUE --file=./pythonjob.py --bucket=<s3bucketname>
-```
+cms scriptrunner --delete=TRUE --file=./setup.py --bucket=<s3-bucket-name>```
 
 #### Run list through cms command
 
