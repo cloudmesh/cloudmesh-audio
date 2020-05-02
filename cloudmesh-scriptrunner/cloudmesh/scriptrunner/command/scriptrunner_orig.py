@@ -38,14 +38,9 @@ class ScriptrunnerCommand(PluginCommand):
         map_parameters(arguments,
                        'upload')
 
-        map_parameters(arguments,
-                       'list')
-
         arguments.FILE = arguments['--file'] or None
         arguments.BUCKET = arguments['--bucket'] or None
         arguments.UPLOAD = arguments['--upload'] or None
-        arguments.LIST = arguments['--list'] or None
-
 
         VERBOSE(arguments)
 
@@ -60,10 +55,8 @@ class ScriptrunnerCommand(PluginCommand):
         #     print("option a")
         #     m.list(path_expand(arguments.FILE))
 
-        elif arguments.LIST:
-            print("option list")
-            gr = GlueRunner.GlueRunner(arguments.FILE, arguments.BUCKET)
-            gr.list()
+        # elif arguments.list:
+        #     print("option b")
         #     m.list("just calling list without parameter")
 
         return ""

@@ -22,6 +22,7 @@ class GlueRunner:
     def upload(self, kind="upload"):
         try:
             pass
+            # TODO:
             s3 = boto3.resource('s3')
 
             """Upload a file to an S3 bucket
