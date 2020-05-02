@@ -8,7 +8,7 @@ from pprint import pprint
 from cloudmesh.scriptrunner import GlueRunner
 from cloudmesh.common.debug import VERBOSE
 from cloudmesh.shell.command import map_parameters
-
+# test
 
 class ScriptrunnerCommand(PluginCommand):
 
