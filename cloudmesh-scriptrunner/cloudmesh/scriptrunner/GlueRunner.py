@@ -113,7 +113,6 @@ class GlueRunner:
 
                 :param job_name: Name of Glue Job
                 """
-        print (self.glue_job)
         try:
             # Delete glue job
             response = glue.delete_job(
@@ -122,12 +121,18 @@ class GlueRunner:
         except Exception as e:
             print("Unable to Delete a AWS Glue job: " + str(e))
 
-    def run_script(self, file=None):
-        # TODO
-        # ?Start glue job
-        response = self.glue.start_job_run(
-            JobName='string'
-        )
+    def run_job(self, file="run_job"):
+        """Run an existing AWS Glue Job based on python script located at S3 bucket
+
+        :param job_name: Name of Glue Job
+        """
+        try:
+            # Run glue job
+            response = glue.start_job_run(
+                JobName=self.glue_job
+            )
+        except Exception as e:
+            print("Unable to execute/run a AWS Glue job: " + str(e))
 
 
 if __name__ == "__main__":

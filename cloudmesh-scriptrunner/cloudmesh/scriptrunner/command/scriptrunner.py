@@ -24,6 +24,7 @@ class ScriptrunnerCommand(PluginCommand):
                 scriptrunner --bucket=BUCKET --list=LIST
                 scriptrunner --job_name=JOB_NAME --role_name=ROLE_NAME --cmd_name=CMD_NAME --bucket=BUCKET --file=FILE --create_job=CREATE_JOB
                 scriptrunner --job_name=JOB_NAME --delete_job=DELETE_JOB
+                scriptrunner --job_name=JOB_NAME --run_job=RUN_JOB
 
           This command does some useful things.
 
@@ -35,6 +36,7 @@ class ScriptrunnerCommand(PluginCommand):
               DELETE TRUE
               CREATE_JOB TRUE
               DELETE_JOB TRUE
+              RUN_JOB TRUE
               JOB_NAME a glue job name
               ROLE_NAME a IAM Role used to create AWS GLUE job
               CMD_NAME a name of glue job's command
@@ -55,6 +57,7 @@ class ScriptrunnerCommand(PluginCommand):
         arguments.LIST = arguments['--list'] or None
         arguments.CREATE_JOB = arguments['--create_job'] or None
         arguments.DELETE_JOB = arguments['--delete_job'] or None
+        arguments.RUN_JOB = arguments['--run_job'] or None
         arguments.JOB_NAME = arguments['--job_name'] or None
         arguments.ROLE_NAME = arguments['--role_name'] or None
         arguments.CMD_NAME = arguments['--cmd_name'] or None
@@ -87,4 +90,10 @@ class ScriptrunnerCommand(PluginCommand):
             print("Delete Glue JOB")
             gr = GlueRunner.GlueRunner(glue_job=arguments.JOB_NAME)
             gr.delete_job()
+
+        if arguments.RUN_JOB is not None:
+            print("Run Glue JOB")
+            gr = GlueRunner.GlueRunner(glue_job=arguments.JOB_NAME)
+            gr.run_job()
+
         return ""

@@ -131,3 +131,9 @@ cms scriptrunner --job_name=<name-of-glue-job> --role_name=<name of IAM Role> --
 ```
 cms scriptrunner --job_name=<name-of-glue-job> --delete_job=TRUE
 ```
+
+#### Create AWS Glue Job
+
+```
+ cms scriptrunner --job_name=xxdex --run_job=TRUE
+```
