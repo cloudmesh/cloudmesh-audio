@@ -106,13 +106,16 @@ This is the file on which prediction would run.
 
 For upload, run command
 
+#### Upload new python script to S3 bucket under folder "script"
 ```
-cms scriptrunner --upload=TRUE --file=./setup.py --bucket=<s3-bucket-name>```
+scriptrunner --file=<./python-file.py> --bucket=<s3-bucket-name> --upload=TRUE
+```
 
-For delete, run command 
+#### Delete python script uploaded already
+```
+scriptrunner --file=<./python-file.py> --bucket=<s3-bucket-name> --delete=TRUE
 
 ```
-cms scriptrunner --delete=TRUE --file=./setup.py --bucket=<s3-bucket-name>```
 
 #### Run list through cms command
 
