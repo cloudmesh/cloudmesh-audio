@@ -109,6 +109,5 @@ This graph is saved under root folder as 'ab.png'.
 #### Architecure of this workflow in AWS
 
 
-![Output Graph](image/abc.png) 
+![Architecture Diagram](image/abc.png) 
 
-![Predictor Output Image](image/abc.png)
