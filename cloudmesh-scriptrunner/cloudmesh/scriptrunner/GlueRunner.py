@@ -6,16 +6,18 @@ from cloudmesh.common.Shell import Shell
 import boto3
 # import logging
 s3 = boto3.client('s3')
-
+glue = boto3.client('glue')
 
 class GlueRunner:
     valid_extn = ["py"]
 
-    def __init__(self, file=None, bucket=None):
+    def __init__(self, file=None, bucket=None, glue_job=None, glue_role=None, cmd_name=None):
         if file is not None:
             self.file = path_expand(file)
         self.bucket = bucket
-        # dir_path = os.path.dirname(path)
+        self.glue_job = glue_job
+        self.glue_role = glue_role
+        self.cmd_name = cmd_name
         self.glue = boto3.client("glue")
         self.s3 = boto3.client("s3")
 
@@ -79,23 +81,32 @@ class GlueRunner:
                 Bucket=self.bucket,
                 Key="scripts/"+file_name
             )
-            print (response)
-
         except Exception as e:
             print("Unable to Delete a file: " + str(e))
 
-    def create_glue_job(self):
-        # TODO
-        # Create glue job
-        response = self.glue.create_job(
-            Name='CMSJOB',
-            Role='GlueDataLakeServiceLinkRole',
-            Command={
-                'Name': 'CommandNAME',
-                'ScriptLocation': 's3://demo0001/dog/glue/cms.py',
-                'PythonVersion': '3'
-            }
-        )
+    def createjob(self, kind="createjob"):
+        """Create AWS Glue Job based on python script located at S3 bucket
+
+        :param job_name: Name of Glue Job
+        :param iam_role: IAM Role created with required permission
+        :param script_location: S3 bucket where python script uploaded
+        :return: True if file was uploaded, else False
+        """
+        try:
+            # Create glue job
+            if self.file is not None:
+                file_name = self.file.split('/')[-1]
+            response = glue.create_job(
+                Name=self.glue_job,
+                Role=self.glue_role,
+                Command={
+                    'Name': self.cmd_name,
+                    'ScriptLocation': "s3://"+self.bucket+"scripts/"+file_name,
+                    'PythonVersion': '3'
+                }
+            )
+        except Exception as e:
+            print("Unable to create a AWS Glue job: " + str(e))
 
     def delete_glue_job(self):
         # TODO
@@ -114,8 +125,4 @@ class GlueRunner:
 
 if __name__ == "__main__":
     pass
-    # sr = GlueRunner("ScriptRunner.py", "demo0001")
-    # sr.upload()
-    # print(__import__("Video"))
-    # audio = Audio()
-    # v.upload()
+
