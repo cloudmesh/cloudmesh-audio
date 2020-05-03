@@ -4,7 +4,7 @@ With this project, additional features has been implemented in Cloudmesh (cms) f
 
 #### Architecture of this workflow in AWS
 
-![Architecture Diagram](images/cms-scriptrunner.png) 
+![Architecture Diagram](./images/cms-scriptrunner.png) 
 
 
 #### What is AWS Glue?
