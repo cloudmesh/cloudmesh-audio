@@ -2,7 +2,7 @@
 
 With this project, additional features has been implemented in Cloudmesh (cms) framework to enable users to upload and run any python scripts seamlessly and server-less way using cms command line and thus behind the scene launches the required AWS services like AWS Glue, AWS S3 and AWS lambda script to upload any python scripts and execute user provided ad-hoc method or automated way for any data source update and stores the output to the target S3 folder.
 
-#### Architecure of this workflow in AWS
+#### Architecture of this workflow in AWS
 
 ![Architecture Diagram](images/cms-scriptrunner.png) 
 
