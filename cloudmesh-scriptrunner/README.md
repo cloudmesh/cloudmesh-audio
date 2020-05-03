@@ -87,6 +87,58 @@ pip install -e .
 
 ```
 
+```
+AWS prerequisite (Important):
+    Before executing any cms command, please make sure to validate the below AWS prerequisites:
+
+    1. AWS S3 bucket in a region where you are intend to store and execute Glue jobs.
+    2. Make sure following folders created under your S3 bucket:
+            example:
+                   Bucket Name: cms-s3-bucket
+                   Folders: 
+                            cms-s3-bucket/scripts  (default locaiton to upload your python scripts)
+                            cms-s3-bucket/input-data (default location to store your data (if any) to be processed)
+                            cms-s3-bucket/output-data (default location to store your output results (if any) to be saved)
+    3. Make sure right access & permissions configurations to secure your S3 bucket and files.
+        ## Reference
+        * <https://aws.amazon.com/premiumsupport/knowledge-center/secure-s3-resources/>
+        * <https://docs.aws.amazon.com/AmazonS3/latest/dev/security-best-practices.html>    
+    
+    4. Create IAM Role and Policy to allow your IAM user to create/delete/run Glue Jobs
+            example:
+                IAM role Name : GlueJobRole
+                IAM Policy Name: GlueDataAccessPolicyForS3
+                IAM Policy (example):
+                    {
+                        "Version": "2012-10-17",
+                        "Id": "abcd-xxx-xxx-xxx-xxx-xxxx",
+                        "Statement": [
+                                {
+                                    "Sid": "GlueDataAccessPermissionsForS3FullAccess",
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "s3:GetObject",
+                                        "s3:PutObject",
+                                        "s3:DeleteObject"
+                                    ],
+                                    "Resource": [
+                                        "arn:aws:s3:::<replace-your-s3-bucket>/*"
+                                    ]
+                                },
+                                {
+                                    "Sid": "GlueDataAccessPermissionsForS3ListBucket",
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "s3:ListBucket"
+                                    ],
+                                    "Resource": [
+                                        "arn:aws:s3:::<replace-your-s3-bucket>"
+                                    ]
+                                }
+                            ]
+                        }
+```
+
 Once installation is complete, run help command to check if installation is successful.
 
 ```
@@ -96,13 +148,9 @@ cms scriptrunner help
 
 ## Command Line Execution
 
-### Commands To Run Prediction
-
 #### Upload, List and Delete any python scrips through cms command.
 
-This is the file on which prediction would run.
-
-#### Try: cms help scriptrunner
+#### Try: "cms help scriptrunner" to list the available commands
 ```
 Usage:
 
