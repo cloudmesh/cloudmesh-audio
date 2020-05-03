@@ -104,7 +104,20 @@ cms scriptrunner help
 
 This is the file on which prediction would run.
 
-For upload, run command
+#### Try: cms help scriptrunner
+```
+Usage:
+
+      scriptrunner --file=FILE --bucket=BUCKET --upload=UPLOAD
+      scriptrunner --file=FILE --bucket=BUCKET --delete=DELETE
+      scriptrunner --bucket=BUCKET --list=LIST
+      scriptrunner --job_name=JOB_NAME --role_name=ROLE_NAME --cmd_name=CMD_NAME --bucket=BUCKET --file=FILE --create_job=CREATE_JOB
+      scriptrunner --job_name=JOB_NAME --delete_job=DELETE_JOB
+      scriptrunner --job_name=JOB_NAME --run_job=RUN_JOB
+
+This command does some useful things.
+```
+
 
 #### Upload new python script to S3 bucket under folder "script"
 ```
@@ -140,3 +153,4 @@ cms scriptrunner --job_name=<name-of-glue-job> --delete_job=TRUE
 ```
  cms scriptrunner --job_name=xxdex --run_job=TRUE
 ```
+
