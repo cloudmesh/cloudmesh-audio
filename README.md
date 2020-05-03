@@ -1,10 +1,8 @@
 # Objective
 
-With this project, additional features has been implemented in Cloudmeash (cms) framework to enable users to upload and run any python scripts seamlessly and serverless way using cms command line and thus
-behind the scene launches the required AWS services like AWS Glue, AWS S3 and AWS lambda script to upload any python scripts and execute user provided adoc method or automated way for any data source update and stores the output to the target S3 folder. 
+With this project, additional features has been implemented in Cloudmesh (cms) framework to enable users to upload and run any python scripts seamlessly and server-less way using cms command line and thus behind the scene launches the required AWS services like AWS Glue, AWS S3 and AWS lambda script to upload any python scripts and execute user provided ad-hoc method or automated way for any data source update and stores the output to the target S3 folder.
 
-
-#### Architecure of this workflow in AWS
+#### Architecture of this workflow in AWS
 
 ![Architecture Diagram](images/cms-scriptrunner.png) 
 
@@ -104,23 +102,53 @@ cms scriptrunner help
 
 This is the file on which prediction would run.
 
-For upload, run command
-
+#### Try: cms help scriptrunner
 ```
-cms scriptrunner --upload=TRUE --file=./pythonjob.py --bucket=<s3bucketname>
-```
+Usage:
 
-For delete, run command 
+      scriptrunner --file=FILE --bucket=BUCKET --upload=UPLOAD
+      scriptrunner --file=FILE --bucket=BUCKET --delete=DELETE
+      scriptrunner --bucket=BUCKET --list=LIST
+      scriptrunner --job_name=JOB_NAME --role_name=ROLE_NAME --cmd_name=CMD_NAME --bucket=BUCKET --file=FILE --create_job=CREATE_JOB
+      scriptrunner --job_name=JOB_NAME --delete_job=DELETE_JOB
+      scriptrunner --job_name=JOB_NAME --run_job=RUN_JOB
 
-```
-cms scriptrunner --delete=TRUE --file=./pythonjob.py --bucket=<s3bucketname>
-```
-
-#### Run list through cms command
-
-```
-cms scriptrunner --list=TRUE --file=./pythonjob.py --bucket=<s3bucketname>
+This command does some useful things.
 ```
 
 
+#### Upload new python script to S3 bucket under folder "script"
+```
+scriptrunner --file=<./python-file.py> --bucket=<s3-bucket-name> --upload=TRUE
+```
+
+#### Delete python script uploaded already
+```
+scriptrunner --file=<./python-file.py> --bucket=<s3-bucket-name> --delete=TRUE
+
+```
+
+#### Run list of scripts existing S3 bucket under "scripts" folder through cms command
+
+```
+scriptrunner --bucket=<s3-bucket-name> --list=TRUE
+```
+
+#### Create AWS Glue Job
+
+```
+cms scriptrunner --job_name=<name-of-glue-job> --role_name=<name of IAM Role> --cmd_name=<command_name> --bucket=<name-of-s3-bucket> --file=<'python script'> --create_job=TRUE
+```
+
+#### Delete an existing AWS Glue Job
+
+```
+cms scriptrunner --job_name=<name-of-glue-job> --delete_job=TRUE
+```
+
+#### Run an existing AWS Glue Job
+
+```
+ cms scriptrunner --job_name=xxdex --run_job=TRUE
+```
 
