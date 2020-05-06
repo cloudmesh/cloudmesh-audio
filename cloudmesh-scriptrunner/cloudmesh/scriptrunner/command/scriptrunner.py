@@ -31,12 +31,12 @@ class ScriptrunnerCommand(PluginCommand):
           Arguments:
               FILE   a file name
               BUCKET a bucket name
-              UPLOAD TRUE
-              LIST  TRUE
-              DELETE TRUE
-              CREATE_JOB TRUE
-              DELETE_JOB TRUE
-              RUN_JOB TRUE
+              UPLOAD
+              LIST
+              DELETE
+              CREATE_JOB
+              DELETE_JOB
+              RUN_JOB
               JOB_NAME a glue job name
               ROLE_NAME a IAM Role used to create AWS GLUE job
               CMD_NAME a name of glue job's command
