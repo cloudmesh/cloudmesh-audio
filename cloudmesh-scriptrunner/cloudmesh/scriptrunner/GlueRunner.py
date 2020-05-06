@@ -58,7 +58,7 @@ class GlueRunner:
                 Delimiter='/',
                 Prefix='scripts/'
             )
-            print (response)
+            #print (response) (use cloudmesh print fun)
             if "Contents" in response:
                 for key in response["Contents"]:
                     print (key["Key"])

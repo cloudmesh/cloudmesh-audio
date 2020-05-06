@@ -19,12 +19,12 @@ class ScriptrunnerCommand(PluginCommand):
         ::
 
           Usage:
-                scriptrunner --file=FILE --bucket=BUCKET --upload=UPLOAD
-                scriptrunner --file=FILE --bucket=BUCKET --delete=DELETE
-                scriptrunner --bucket=BUCKET --list=LIST
-                scriptrunner --job_name=JOB_NAME --role_name=ROLE_NAME --cmd_name=CMD_NAME --bucket=BUCKET --file=FILE --create_job=CREATE_JOB
-                scriptrunner --job_name=JOB_NAME --delete_job=DELETE_JOB
-                scriptrunner --job_name=JOB_NAME --run_job=RUN_JOB
+                scriptrunner --file=FILE --bucket=BUCKET --upload
+                scriptrunner --file=FILE --bucket=BUCKET --delete
+                scriptrunner --bucket=BUCKET --list
+                scriptrunner --job_name=JOB_NAME --role_name=ROLE_NAME --cmd_name=CMD_NAME --bucket=BUCKET --file=FILE --create_job
+                scriptrunner --job_name=JOB_NAME --delete_job
+                scriptrunner --job_name=JOB_NAME --run_job
 
           This command does some useful things.
 
