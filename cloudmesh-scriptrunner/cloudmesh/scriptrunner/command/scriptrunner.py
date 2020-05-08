@@ -83,7 +83,7 @@ class ScriptrunnerCommand(PluginCommand):
 
         if arguments.CREATE_JOB is not None:
             print("create Glue JOB")
-            gr = GlueRunner.GlueRunner(arguments.BUCKET, arguments.FILE, arguments.JOB_NAME, arguments.ROLE_NAME, arguments.CMD_NAME)
+            gr = GlueRunner.GlueRunner(arguments.FILE, arguments.BUCKET, arguments.JOB_NAME, arguments.ROLE_NAME, arguments.CMD_NAME)
             gr.create_job()
 
         if arguments.DELETE_JOB is not None:

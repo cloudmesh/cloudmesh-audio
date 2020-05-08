@@ -99,12 +99,14 @@ class GlueRunner:
             response = glue.create_job(
                 Name=self.glue_job,
                 Role=self.glue_role,
+                GlueVersion='1.0',
                 Command={
-                    'Name': self.cmd_name,
-                    'ScriptLocation': "s3://"+self.bucket+"scripts/"+file_name,
-                    'PythonVersion': '3'
+                    'Name': "testcmd",
+                    'ScriptLocation': "s3://"+self.bucket+"/scripts/"+file_name,
+                    'PythonVersion': '2'
                 }
             )
+
         except Exception as e:
             print("Unable to create a AWS Glue job: " + str(e))
 

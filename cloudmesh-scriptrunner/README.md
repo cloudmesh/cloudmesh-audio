@@ -167,36 +167,36 @@ This command does some useful things.
 
 #### Upload new python script to S3 bucket under folder "script"
 ```
-scriptrunner --file=<./python-file.py> --bucket=<s3-bucket-name> --upload=TRUE
+scriptrunner --file=<./python-file.py> --bucket=<s3-bucket-name> --upload
 ```
 
 #### Delete python script uploaded already
 ```
-scriptrunner --file=<./python-file.py> --bucket=<s3-bucket-name> --delete=TRUE
+scriptrunner --file=<./python-file.py> --bucket=<s3-bucket-name> --delete
 
 ```
 
 #### Run list of scripts existing S3 bucket under "scripts" folder through cms command
 
 ```
-scriptrunner --bucket=<s3-bucket-name> --list=TRUE
+scriptrunner --bucket=<s3-bucket-name> --list
 ```
 
 #### Create AWS Glue Job
 
 ```
-cms scriptrunner --job_name=<name-of-glue-job> --role_name=<name of IAM Role> --cmd_name=<command_name> --bucket=<name-of-s3-bucket> --file=<'python script'> --create_job=TRUE
+cms scriptrunner --job_name=<name-of-glue-job> --role_name=<name of IAM Role> --cmd_name=<command_name> --bucket=<name-of-s3-bucket> --file=<'python script'> --create_job
 ```
 
 #### Delete an existing AWS Glue Job
 
 ```
-cms scriptrunner --job_name=<name-of-glue-job> --delete_job=TRUE
+cms scriptrunner --job_name=<name-of-glue-job> --delete_job
 ```
 
 #### Run an existing AWS Glue Job
 
 ```
- cms scriptrunner --job_name=xxdex --run_job=TRUE
+ cms scriptrunner --job_name=xxdex --run_job
 ```
 
