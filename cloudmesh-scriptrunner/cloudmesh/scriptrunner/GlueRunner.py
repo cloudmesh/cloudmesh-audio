@@ -3,6 +3,7 @@ import os
 # from pathlib import Path
 from cloudmesh.common.util import path_expand
 from cloudmesh.common.Shell import Shell
+from cloudmesh.common.Printer import Printer
 import boto3
 # import logging
 s3 = boto3.client('s3')
@@ -38,8 +39,8 @@ class GlueRunner:
             if self.file is not None:
                 file_name = self.file.split('/')[-1]
 
-            s3.meta.client.upload_file(Filename=self.file, Bucket=self.bucket, Key="scripts/"+file_name)
-            print("Uploaded file successfully")
+            response = s3.meta.client.upload_file(Filename=self.file, Bucket=self.bucket, Key="scripts/"+file_name)
+            Printer.write(response)
             return True
 
         except Exception as e:
@@ -92,23 +93,24 @@ class GlueRunner:
         :param script_location: S3 bucket where python script uploaded
         :return: True if file was uploaded, else False
         """
+
         try:
-            # Create glue job
             if self.file is not None:
-                file_name = self.file.split('/')[-1]
-            response = glue.create_job(
+                file_name = self.file.split("/")[-1]
+            GLUE_JOB = glue.create_job(
                 Name=self.glue_job,
                 Role=self.glue_role,
                 GlueVersion='1.0',
                 Command={
-                    'Name': "testcmd",
+                    'Name': 'pythonshell',
                     'ScriptLocation': "s3://"+self.bucket+"/scripts/"+file_name,
-                    'PythonVersion': '2'
-                }
+                    'PythonVersion': '3'
+                },
             )
-
-        except Exception as e:
-            print("Unable to create a AWS Glue job: " + str(e))
+        finally:
+            JOB_RUN = glue.start_job_run(
+                JobName=self.glue_job
+            )
 
     def delete_job(self, kind="delete_job"):
         """Delete an existing AWS Glue Job based on python script located at S3 bucket
