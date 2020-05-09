@@ -6,8 +6,8 @@ With this project, additional features has been implemented in Cloudmesh (cms) f
 
 ![Architecture Diagram](./images/cms-scriptrunner.png) 
 
-### Architecture walk-through and cms-scriptrunner demo
-[![Watch the video](./images/cms-scriptruner-demo.mp4)]
+### Download the Architecture walk-through and cms-scriptrunner demo
+[![Download the video](./images/cms-scriptruner-demo.mp4)]
 
 
 #### What is AWS Glue?
